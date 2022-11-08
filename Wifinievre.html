@@ -69,7 +69,21 @@ min-width: 100%;
 margin-top: 75px;
 }
 
+#menu {
+width: 15%; margin-right: auto; margin-left: auto;
+border-radius: 20px;
+Z-index: 1; top: 80px; left: 10px; position: absolute;
+border-color: none; background-color: #2691a0 ;
+font-size: 12px; font-family: 'Tahoma'; 
+}
 
+#menu a {
+display: block; color: #e8f1ed; padding: 8px 16px;
+border-radius: 20px
+text-align: center; font-weight: bold;
+border-style: solid; border-color: none;
+}
+	
 #navstyle {
 Z-index: 1; top: 80px; right: 45px; position: absolute;
 border-radius: 10px;
@@ -161,6 +175,7 @@ font-family: 'Tahoma';
 				'text-anchor': 'top'
 			}
 		});
+	});
 
 	map.on('click', 'wifi nievre', (e) => {
 		// Copy coordinates array.
