@@ -222,29 +222,6 @@ font-family: 'Tahoma';
 		});
 	});
 	
-	map.on('load', () => {
-	// Add a source for the commune polygons.
-		map.addSource('comm', {
-			'type': 'geojson',
-			'data': 'https://raw.githubusercontent.com/Naslar010/wifinievre/main/data/communes.geojson'
-		});
-		
-	 
-		// Add a color outline around the polygon.
-		map.addLayer({
-			'id': 'commune_line',
-			'type': 'line',
-			'source': 'comm',
-			'layout': {
-				'line-join': 'round',
-				'line-cap': 'round'
-			},
-			'paint': {
-				'line-color': '#2b4735',
-				'line-width': 0.5
-			}
-		});
-	});
 
 
 //////////////////////////////////   Ajout de l'habillage de la carte //////////////////////////////////////
