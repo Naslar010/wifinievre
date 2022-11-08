@@ -90,7 +90,7 @@ font-family: 'Tahoma';
 
 <!-- BEGIN top left logo  -->
 
-<div class="image"><img id = "logo-link" src = 'https://raw.githubusercontent.com/Naslar010/wifinievre/main/icons/wifi_nievre.png' alt="La revolution du Numérique"></div>
+<div class="image"><img id = "logo-link" src = 'https://raw.githubusercontent.com/Naslar010/wifinievre/main/icons/wifi_nievre.png' alt="Les site wifi de la Nièvre"></div>
 
 <div id="map"></div>
 <div id="geocoder" class="geocoder"></div>
@@ -162,10 +162,11 @@ font-family: 'Tahoma';
 			"source": 'wifi_point',
 			'layout': {
 				'icon-image': 'wifi-marker',
+				'icon-size': 0.10,
 				'text-field': ['get', 'Commune'],
 				'text-font': ['Open Sans Regular'],
 				'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
-				'text-radial-offset': 0.5,
+				'text-offset': [0, 1.25],
 				'text-justify': 'auto'
 			}
 		});
