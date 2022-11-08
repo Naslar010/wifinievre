@@ -144,7 +144,7 @@ font-family: 'Tahoma';
 	map.on('load', () => {
 		// Add an image to use as a custom marker
 		map.loadImage(
-			'https://raw.githubusercontent.com/Naslar010/wifinievre/main/picto_wifi_nievre.png',
+			'https://raw.githubusercontent.com/Naslar010/wifinievre/main/icons/picto_wifi_nievre.png',
 		(error, image) => {
 				if (error) throw error;
 				map.addImage('wifi-marker', image);
@@ -162,7 +162,7 @@ font-family: 'Tahoma';
 			"source": 'wifi_point',
 			'layout': {
 				'icon-image': 'wifi-marker',
-				'icon-size': 0.5,
+				'icon-size': 0.10,
 				'text-field': ['get', 'Commune'],
 				'text-font': [
 					'Tahoma',
