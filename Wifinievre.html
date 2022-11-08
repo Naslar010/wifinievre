@@ -69,29 +69,6 @@ min-width: 100%;
 margin-top: 75px;
 }
 
-#menu {
-width: 15%; margin-right: auto; margin-left: auto;
-border-radius: 20px;
-Z-index: 1; top: 80px; left: 10px; position: absolute;
-border-color: none; background-color: #2691a0 ;
-font-size: 12px; font-family: 'Tahoma'; 
-}
-
-#menu a {
-display: block; color: #e8f1ed; padding: 8px 16px;
-border-radius: 20px
-text-align: center; font-weight: bold;
-border-style: solid; border-color: none;
-}
-
-#menu a.active { background-color: #CC6600;
-color: #e8f1ed;
-}
-
-#menu a:hover:not(.active) {
-background-color: #CC6600;
-color: #e8f1ed;
-}
 
 #navstyle {
 Z-index: 1; top: 80px; right: 45px; position: absolute;
@@ -123,15 +100,6 @@ font-family: 'Tahoma';
 <label for="satellite-v9">Vue satellite</label>
 </div>
 
-<!-- Bloc légende -->
-<div id="zasro-legend" class="legend">
-<h3>ZASRO</h3>
-<div><span style="background-color: #34e43f"></span>Reprise en exploitation</div>
-<div><span style="background-color: #44bdca"></span>Travaux terminés - reprise réserves</div>	
-<div><span style="background-color: #e1dc31"></span>Travaux en cours</div>
-<div><span style="background-color: #e74c3c"></span>Étude EXE en cours</div>
-<div><span style="background-color: #a5b6b7"></span>AMEL SFR-XpFibre</div>
-</div>
 
 <script>
 	mapboxgl.accessToken = 'pk.eyJ1IjoibGFybWFzIiwiYSI6ImNqZGs4bnFhdTBzc2szM3AyamRoMzZ0Y3AifQ.eI0pvLqK0BIO02IdZk-txw';
@@ -172,37 +140,29 @@ font-family: 'Tahoma';
 			'https://raw.githubusercontent.com/Naslar010/wifinievre/main/picto_wifi_nievre.png',
 		(error, image) => {
 				if (error) throw error;
-				map.addImage('ftth-marker', image);
+				map.addImage('wifi-marker', image);
 		});
-		// Référence des souces pour les prises nn
-		map.addSource('ipe_nn1', {
+		// Référence des souces pour les bornes wifi
+		map.addSource('wifi_point', {
 			'type': 'geojson',
-			'data': 'https://raw.githubusercontent.com/Naslar010/wifinievre/main/data/ipe_nn1.geojson'
+			'data': 'https://raw.githubusercontent.com/Naslar010/wifinievre/main/data/wifi_nievre.geojson'
 		});
 		
 		// Ajout des couches par fraction
 		map.addLayer({
-			"id": 'Prises nn1',
-			"type": 'circle',
-			"source": 'ipe_nn1',
-			'layout': {"visibility": 'none',
-			},
-			'paint': {
-				'circle-color': {
-					'type': 'categorical',
-					'property': 'EtatImmeuble',
-					'stops': [
-					['DEPLOYE', '#56ea76'],
-					['CIBLE', '#e55e5e']
-				]},
-				'circle-opacity': 0.7,
-				'circle-radius': 3.2,
-				'circle-stroke-width': 0.4,
-				'circle-stroke-color': '#e5f3ed'
+			"id": 'wifi nievre',
+			"type": 'symbol',
+			"source": 'wifi_point',
+			'layout': {
+				'icon-image': 'wifi-marker',
+				'icon-size': 0.10,
+				'text-field': ['get', 'commune'],
+				'text-offset': [0, 1.25],
+				'text-anchor': 'top'
 			}
 		});
 
-	map.on('click', 'Prises nn1', (e) => {
+	map.on('click', 'wifi nievre', (e) => {
 		// Copy coordinates array.
 		var coordinates = e.features[0].geometry.coordinates.slice();
 		var feature = e.features[0];
@@ -216,34 +176,20 @@ font-family: 'Tahoma';
 		 
 		new mapboxgl.Popup()
 			.setLngLat(coordinates)
-			.setHTML(('<p><b><u> ID Immeuble</b></u> : '+feature.properties.IdentifiantImmeuble+'<br><b><u>Nombre de logements</b></u> : '+feature.properties.NombreLogementsAdresseIPE+'<br><b><u>Etat du déploiement</b></u> : ' +feature.properties.EtatImmeuble+'<br><b><u>Date mise en service commerciale</b></u> : ' +feature.properties.DateMiseEnServiceCommercialeImmeuble+'<br><b><u>Adresse</b></u> : ' +feature.properties.NumeroVoieImmeuble+' '+feature.properties.TypeVoieImmeuble+' '+feature.properties.NomVoieImmeuble+', '+feature.properties.CodePostalImmeuble+' '+feature.properties.CommuneImmeuble+'</p>'))
+			.setHTML(('<p><b><u> Adresse </b></u> : '+feature.properties.Adresse+'<br><b><u>Code Postal</b></u> : '+feature.properties.Commune+'</p>'))
 			.addTo(map);
 	});
 	
-	map.on('mouseenter', 'Prises nn1', () => {
+	map.on('mouseenter', 'wifi nievre', () => {
 		map.getCanvas().style.cursor = 'pointer';
 	});
 	 
 	// Change the cursor back to a pointer
 	// when it leaves the states layer.
-	map.on('mouseleave', 'Prises nn1', () => {
+	map.on('mouseleave', 'wifi nievre', () => {
 		map.getCanvas().style.cursor = '';
 	});
-	
-
-	map.on('load', () => {
-		// Add an image to use as a custom marker
-		map.loadImage(
-			'https://raw.githubusercontent.com/Naslar010/wifinievre/main/picto_wifi_nievre.png',
-		(error, image) => {
-				if (error) throw error;
-				map.addImage('ftth-sfr', image);
-		});
-		// Add a GeoJSON source ipe_amel 1
-		map.addSource('ipe_amel1', {
-			'type': 'geojson',
-			'data': 'https://raw.githubusercontent.com/Naslar010/wifinievre/main/data/ipe_amel1.geojson'
-		});	
+		
 
 	map.on('load', () => {
 	// Add a source for the departement 58 polygons.
@@ -280,7 +226,9 @@ font-family: 'Tahoma';
 			'id': 'communes',
 			'type': 'fill',
 			'source': 'comm',
-			'layout': {"visibility": 'none',
+			'layout': {
+				'line-join': 'round',
+				'line-cap': 'round'
 			},
 			'paint': {
 				'fill-color': '#a5b6b7',
@@ -304,23 +252,6 @@ font-family: 'Tahoma';
 			}
 		});
 	});
-	
-	map.on('click', 'communes', (e) => {	 
-		new mapboxgl.Popup()
-			.setLngLat(e.lngLat)
-			.setHTML(('<p><b><u> Nom Commune</b></u> : '+e.features[0].properties.nom+'<br><b><u>Code INSEE</b></u> : '+e.features[0].properties.id+'<br><b><u>Nombre de prises RBAL</b></u> : ' +e.features[0].properties.nb_prises+'<br><b><u>Nombre de prises REX</b></u> : ' +e.features[0].properties.Prises_Rex+'<br><b><u>Communauté de Commune</b></u> : '+e.features[0].properties.EPCI+'</p>'))
-			.addTo(map);
-	});
-	
-	map.on('mouseenter', 'communes', () => {
-		map.getCanvas().style.cursor = 'pointer';
-	});
-	 
-	// when it leaves the states layer.
-	map.on('mouseleave', 'communes', () => {
-		map.getCanvas().style.cursor = '';
-	});
-
 
 
 //////////////////////////////////   Ajout de l'habillage de la carte //////////////////////////////////////
