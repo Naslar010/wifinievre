@@ -152,25 +152,25 @@ font-family: 'Tahoma';
 		// Référence des souces pour les bornes wifi
 		map.addSource('wifi_point', {
 			'type': 'geojson',
-			'data': 'https://raw.githubusercontent.com/Naslar010/wifinievre/main/data/wifi_nievre.geojson'
+			'data': 'https://raw.githubusercontent.com/Naslar010/wifinievre/main/data/hotspot_wifi.geojson'
 		});
 		
 		// Ajout des couches par fraction
 		map.addLayer({
-			"id": 'wifi nievre',
+			"id": 'hotspot wifi',
 			"type": 'symbol',
 			"source": 'wifi_point',
 			'layout': {
 				'icon-image': 'wifi-marker',
 				'icon-size': 0.10,
-				'text-field': ['get', 'commune'],
+				'text-field': ['get', 'Commune'],
 				'text-offset': [0, 1.25],
 				'text-anchor': 'top'
 			}
 		});
 	});
 
-	map.on('click', 'wifi nievre', (e) => {
+	map.on('click', 'hotspot wifi', (e) => {
 		// Copy coordinates array.
 		var coordinates = e.features[0].geometry.coordinates.slice();
 		var feature = e.features[0];
@@ -184,17 +184,17 @@ font-family: 'Tahoma';
 		 
 		new mapboxgl.Popup()
 			.setLngLat(coordinates)
-			.setHTML(('<p><b><u> Adresse </b></u> : '+feature.properties.Adresse+'<br><b><u>Code Postal</b></u> : '+feature.properties.Commune+'</p>'))
+			.setHTML(('<p><b><u> Adresse </b></u> : '+feature.properties.Adresse+'<br><b><u>Code Postal</b></u> : '+feature.properties.Code_P+' '+feature.properties.Commune+'</p>'))
 			.addTo(map);
 	});
 	
-	map.on('mouseenter', 'wifi nievre', () => {
+	map.on('mouseenter', 'hotspot wifi', () => {
 		map.getCanvas().style.cursor = 'pointer';
 	});
 	 
 	// Change the cursor back to a pointer
 	// when it leaves the states layer.
-	map.on('mouseleave', 'wifi nievre', () => {
+	map.on('mouseleave', 'hotspot wifi', () => {
 		map.getCanvas().style.cursor = '';
 	});
 		
