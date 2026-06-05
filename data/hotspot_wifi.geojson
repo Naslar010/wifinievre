@@ -51,7 +51,6 @@
 { "type": "Feature", "properties": { "id": 46, "site": "Cours du Château", "Hotspot": "WiFi4EU", "Adresse": "13 Grande Rue", "Code_P": "58310", "Commune": "Saint-Amand-en-Puisaye" }, "geometry": { "type": "Point", "coordinates": [ 3.073632641454752, 47.531610223351201 ] } },
 { "type": "Feature", "properties": { "id": 47, "site": "Cours du Cube", "Hotspot": "WiFi4EU", "Adresse": "17 Grande Rue", "Code_P": "58310", "Commune": "Saint-Amand-en-Puisaye" }, "geometry": { "type": "Point", "coordinates": [ 3.073664608167332, 47.530791339802519 ] } },
 { "type": "Feature", "properties": { "id": 48, "site": "Place de la Liberté", "Hotspot": "WiFi4EU", "Adresse": "6 Grande Rue", "Code_P": "58310", "Commune": "Saint-Amand-en-Puisaye" }, "geometry": { "type": "Point", "coordinates": [ 3.072575801631018, 47.531461641723489 ] } },
-{ "type": "Feature", "properties": { "id": 49, "site": "Camping", "Hotspot": "WiFi4EU", "Adresse": "10 Route de Saint-sauveur", "Code_P": "58310", "Commune": "Saint-Amand-en-Puisaye" }, "geometry": { "type": "Point", "coordinates": [ 3.07320032578368, 47.532806159704478 ] } },
-{ "type": "Feature", "properties": { "id": 50, "site": "Boulevard De Gaulle", "Hotspot": "PVC", "Adresse": "58 Rue MArceau", "Code_P": "58000", "Commune": "Nevers" }, "geometry": { "type": "Point", "coordinates": [ 3.342886066477682, 47.47901858869178 ] } }
+{ "type": "Feature", "properties": { "id": 49, "site": "Camping", "Hotspot": "WiFi4EU", "Adresse": "10 Route de Saint-sauveur", "Code_P": "58310", "Commune": "Saint-Amand-en-Puisaye" }, "geometry": { "type": "Point", "coordinates": [ 3.07320032578368, 47.532806159704478 ] } }
 ]
 }
